@@ -54,6 +54,7 @@ gem_img = pygame.image.load('assets/images/items/platformPack_item008.png').conv
 
 # Game physics
 GRAVITY = 1
+TERMINAL_VELOCITY = 16
 
 
 # Stages
@@ -99,12 +100,21 @@ class Hero(pygame.sprite.Sprite):
 
     def stop(self):
         self.vx = 0
+
+    def can_jump(self):
+        self.rect.y += 2
+        hit_list = pygame.sprite.spritecollide(self, tiles, False)
+        self.rect.y -= 2
+
+        return len(hit_list) > 0
     
     def jump(self):
-        pass
+        if self.can_jump():
+            self.vy = -self.jump_power
 
     def apply_gravity(self):
-        pass
+        self.vy += GRAVITY
+        self.vy = min(self.vy, TERMINAL_VELOCITY)
 
     def move_and_check_tiles(self):
         ''' move in horizontal direction and resolve colisions '''
@@ -187,30 +197,44 @@ def setup():
     ''' Make sprites '''
     hero = Hero(3, 7, hero_img)
 
-    t1 = Tile(0, 8, grass_img)
-    t2 = Tile(1, 8, grass_img)
-    t3 = Tile(2, 8, grass_img)
-    t4 = Tile(3, 8, grass_img)
-    t5 = Tile(4, 8, grass_img)
-    t6 = Tile(5, 8, grass_img)
-    t7 = Tile(6, 8, grass_img)
-    t8 = Tile(7, 8, grass_img)
-    t9 = Tile(8, 8, grass_img)
-    t10 = Tile(9, 8, grass_img)
-    t11 = Tile(10, 8, grass_img)
-    t12 = Tile(11, 8, grass_img)
-    t13 = Tile(12, 8, grass_img)
-    t14 = Tile(13, 8, grass_img)
-    t15 = Tile(14, 8, grass_img)
-    t16 = Tile(15, 8, grass_img)
+    t1 = Tile(0, 14, grass_img)
+    t2 = Tile(1, 14, grass_img)
+    t3 = Tile(2, 14, grass_img)
+    t4 = Tile(3, 14, grass_img)
+    t5 = Tile(4, 14, grass_img)
+    t6 = Tile(5, 14, grass_img)
+    t7 = Tile(6, 14, grass_img)
+    t8 = Tile(7, 14, grass_img)
+    t9 = Tile(8, 14, grass_img)
+    t10 = Tile(9, 14, grass_img)
+    t11 = Tile(10, 14, grass_img)
+    t12 = Tile(11, 14, grass_img)
+    t13 = Tile(12, 14, grass_img)
+    t14 = Tile(13, 14, grass_img)
+    t15 = Tile(14, 14, grass_img)
+    t16 = Tile(15, 14, grass_img)
+    t17 = Tile(16, 14, grass_img)
+    t18 = Tile(17, 14, grass_img)
+    t19 = Tile(18, 14, grass_img)
+    t20 = Tile(19, 14, grass_img)
+    t21 = Tile(20, 14, grass_img)
+    t22 = Tile(21, 14, grass_img)
+    t23 = Tile(22, 14, grass_img)
+    t24 = Tile(23, 14, grass_img)
+    t25 = Tile(24, 14, grass_img)
+    t26 = Tile(25, 14, grass_img)
 
-    t17 = Tile(5, 5, platform_img)
-    t18 = Tile(6, 5, platform_img)
-    t19 = Tile(7, 5, platform_img)
+    t27 = Tile(5, 5, platform_img)
+    t28 = Tile(6, 5, platform_img)
+    t29 = Tile(7, 5, platform_img)
 
-    t20 = Tile(10, 3, platform_img)
-    t21 = Tile(11, 3, platform_img)
-    t22 = Tile(12, 3, platform_img)
+    t30 = Tile(5, 10, platform_img)
+    t31 = Tile(6, 10, platform_img)
+    t32 = Tile(7, 10, platform_img)
+
+    t33 = Tile(10, 10, platform_img)
+    t34 = Tile(11, 10, platform_img)
+    t35 = Tile(12, 10, platform_img)
 
     i1 = Gem(13, 7, gem_img)
     i2 = Gem(6, 4, gem_img)
@@ -224,9 +248,9 @@ def setup():
     ''' Add sprites to groups '''
     player.add(hero)
 
-    tiles.add(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16)
-    tiles.add(t17, t18, t19)
-    tiles.add(t20, t21, t22)
+    tiles.add(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t19 , t18, t19, t20
+              , t21, t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35)
+
     
     items.add(i1, i2, i3)
     
@@ -250,7 +274,7 @@ while running:
                     stage = PLAYING
                     
             elif stage == PLAYING:
-                if event.key == pygame.K_SPACE:
+                if event.key == pygame.K_UP:
                     hero.jump()
 
     pressed = pygame.key.get_pressed()
