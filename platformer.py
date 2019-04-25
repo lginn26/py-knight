@@ -8,8 +8,8 @@ pygame.init()
 
 # Window
 SCALE = 64
-WIDTH = 16 * SCALE
-HEIGHT = 9 * SCALE
+WIDTH = 28 * SCALE
+HEIGHT = 15 * SCALE
 SIZE = (WIDTH, HEIGHT)
 TITLE = "Name of Game"
 screen = pygame.display.set_mode(SIZE)
@@ -45,7 +45,7 @@ GEM_SND = pygame.mixer.Sound('assets/sounds/gem.ogg')
 hero_img = pygame.image.load('assets/images/characters/platformChar_walk1.png').convert_alpha()
 
 ''' tiles '''
-grass_img = pygame.image.load('assets/images/tiles/platformPack_tile001.png').convert_alpha()
+grass_img = pygame.image.load('assets/images/tiles/grass_block_surface.png').convert_alpha()
 platform_img = pygame.image.load('assets/images/tiles/platformPack_tile020.png').convert_alpha()
                   
 ''' items '''
