@@ -42,14 +42,20 @@ GEM_SND = pygame.mixer.Sound('assets/sounds/gem.ogg')
 
 # Images
 ''' characters '''
-hero_img = pygame.image.load('assets/images/characters/platformChar_walk1.png').convert_alpha()
+hero_img = pygame.image.load('assets/images/characters/py_knight.png').convert_alpha()
 
 ''' tiles '''
-grass_img = pygame.image.load('assets/images/tiles/grass_block_surface.png').convert_alpha()
-platform_img = pygame.image.load('assets/images/tiles/platformPack_tile020.png').convert_alpha()
+grass_surface_img = pygame.image.load('assets/images/tiles/grass_block_surface.png').convert_alpha()
+grass_rightcorner_img = pygame.image.load('assets/images/tiles/grass_block_rightcorner.png').convert_alpha()
+grass_leftcorner_img = pygame.image.load('assets/images/tiles/grass_block_leftcorner.png').convert_alpha()
+grass_rightwall_img = pygame.image.load('assets/images/tiles/grass_block_rightwall.png').convert_alpha()
+grass_leftwall_img = pygame.image.load('assets/images/tiles/grass_block_leftwall.png').convert_alpha()
+grass_rightmerger_img = pygame.image.load('assets/images/tiles/grass_block_rightmerger.png').convert_alpha()
+grass_leftmerger_img = pygame.image.load('assets/images/tiles/grass_block_leftmerger.png').convert_alpha()
+grass_filler_img = pygame.image.load('assets/images/tiles/grass_block_filler.png').convert_alpha()
+
                   
 ''' items '''
-gem_img = pygame.image.load('assets/images/items/platformPack_item008.png').convert_alpha()
 
 
 # Game physics
@@ -65,10 +71,26 @@ END = 3
 
 # Game classes
 class Tile(pygame.sprite.Sprite):
-    def __init__(self, x, y, image):
+    def __init__(self, x, y, t_type):
         super().__init__()
 
-        self.image = image
+        if t_type == "grs_s":
+            self.image = grass_surface_img
+        elif t_type == "grs_rc":
+            self.image = grass_rightcorner_img
+        elif t_type == "grs_lc":
+            self.image = grass_leftcorner_img
+        elif t_type == "grs_rw":
+            self.image = grass_rightwall_img
+        elif t_type == "grs_lw":
+            self.image = grass_leftwall_img
+        elif t_type == "grs_lm":
+            self.image = grass_leftmerger_img
+        elif t_type == "grs_rm":
+            self.image = grass_rightmerger_img
+        elif t_type == "grs_f":
+            self.image = grass_filler_img
+
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = x * SCALE
@@ -179,6 +201,17 @@ class Enemy(pygame.sprite.Sprite):
 
     
 # Game helper functions
+def draw_grid(scale, color=GREEN, width=SIZE[0], height=SIZE[1]):
+    '''
+    Draws a grid that can overlay your picture.
+    This should make it easier to figure out coordinates
+    when drawing pictures.
+    '''
+    for x in range(0, width, scale):
+        pygame.draw.line(screen, color, [x, 0], [x, height], 1)
+    for y in range(0, height, scale):
+        pygame.draw.line(screen, color, [0, y], [width, y], 1)
+
 def show_title_screen():
     text = FONT_XL.render(TITLE, 1, WHITE)
     screen.blit(text, [128, 204])
@@ -197,48 +230,73 @@ def setup():
     ''' Make sprites '''
     hero = Hero(3, 7, hero_img)
 
-    t1 = Tile(0, 14, grass_img)
-    t2 = Tile(1, 14, grass_img)
-    t3 = Tile(2, 14, grass_img)
-    t4 = Tile(3, 14, grass_img)
-    t5 = Tile(4, 14, grass_img)
-    t6 = Tile(5, 14, grass_img)
-    t7 = Tile(6, 14, grass_img)
-    t8 = Tile(7, 14, grass_img)
-    t9 = Tile(8, 14, grass_img)
-    t10 = Tile(9, 14, grass_img)
-    t11 = Tile(10, 14, grass_img)
-    t12 = Tile(11, 14, grass_img)
-    t13 = Tile(12, 14, grass_img)
-    t14 = Tile(13, 14, grass_img)
-    t15 = Tile(14, 14, grass_img)
-    t16 = Tile(15, 14, grass_img)
-    t17 = Tile(16, 14, grass_img)
-    t18 = Tile(17, 14, grass_img)
-    t19 = Tile(18, 14, grass_img)
-    t20 = Tile(19, 14, grass_img)
-    t21 = Tile(20, 14, grass_img)
-    t22 = Tile(21, 14, grass_img)
-    t23 = Tile(22, 14, grass_img)
-    t24 = Tile(23, 14, grass_img)
-    t25 = Tile(24, 14, grass_img)
-    t26 = Tile(25, 14, grass_img)
+    preped_tiles = [
+    Tile(0, 14, "grs_s"), 
+    Tile(1, 14, "grs_s"), 
+    Tile(2, 14, "grs_s"), 
+    Tile(3, 14, "grs_s"),
+    Tile(4, 14, "grs_s"),
+    Tile(5, 14, "grs_s"),
+    Tile(6, 14, "grs_lm"),
+    Tile(6, 13, "grs_lw"),
+    Tile(6, 12, "grs_lw"),
+    Tile(6, 11, "grs_lw"),
+    Tile(6, 10, "grs_lc"),
+    Tile(7, 10, "grs_s"),
+    Tile(8, 10, "grs_s"),
+    Tile(9, 10, "grs_s"),
+    Tile(10, 10, "grs_s"),
+    Tile(11, 10, "grs_rc"),
+    Tile(11, 11, "grs_rw"),
+    Tile(11, 12, "grs_rw"),
+    Tile(11, 13, "grs_rw"),
+    Tile(11, 14, "grs_rm"),
+    Tile(12, 14, "grs_s"),
+    Tile(13, 14, "grs_s"),
+    Tile(14, 14, "grs_s"),
+    Tile(15, 14, "grs_s"),
+    Tile(16, 14, "grs_s"),
+    Tile(17, 14, "grs_s"),
+    Tile(18, 14, "grs_s"),
+    Tile(19, 14, "grs_lm"),
+    Tile(19, 13, "grs_lc"),
+    Tile(20, 13, "grs_lm"),
+    Tile(20, 12, "grs_lc"),
+    Tile(21, 12, "grs_lm"),
+    Tile(21, 11, "grs_lc"),
+    Tile(22, 11, "grs_lm"),
+    Tile(22, 10, "grs_lc"),
+    Tile(23, 10, "grs_rc"),
+    Tile(23, 11, "grs_rw"),
+    Tile(23, 12, "grs_rw"),
+    Tile(23, 13, "grs_rw"),
+    Tile(23, 14, "grs_rw"),
 
-    t27 = Tile(5, 5, platform_img)
-    t28 = Tile(6, 5, platform_img)
-    t29 = Tile(7, 5, platform_img)
-
-    t30 = Tile(5, 10, platform_img)
-    t31 = Tile(6, 10, platform_img)
-    t32 = Tile(7, 10, platform_img)
-
-    t33 = Tile(10, 10, platform_img)
-    t34 = Tile(11, 10, platform_img)
-    t35 = Tile(12, 10, platform_img)
-
-    i1 = Gem(13, 7, gem_img)
-    i2 = Gem(6, 4, gem_img)
-    i3 = Gem(11, 2, gem_img)
+    Tile(7, 14, "grs_f"),
+    Tile(8, 14, "grs_f"),
+    Tile(9, 14, "grs_f"),
+    Tile(10, 14, "grs_f"),
+    Tile(7, 13, "grs_f"),
+    Tile(8, 13, "grs_f"),
+    Tile(9, 13, "grs_f"),
+    Tile(10, 13, "grs_f"),
+    Tile(7, 12, "grs_f"),
+    Tile(8, 12, "grs_f"),
+    Tile(9, 12, "grs_f"),
+    Tile(10, 12, "grs_f"),
+    Tile(7, 11, "grs_f"),
+    Tile(8, 11, "grs_f"),
+    Tile(9, 11, "grs_f"),
+    Tile(10, 11, "grs_f"),
+    Tile(20, 14, "grs_f"),
+    Tile(21, 14, "grs_f"),
+    Tile(22, 14, "grs_f"),
+    Tile(21, 13, "grs_f"),
+    Tile(22, 13, "grs_f"),
+    Tile(22, 12, "grs_f"),
+                        ]
+   
+       
     
     ''' Make sprite groups '''
     player = pygame.sprite.GroupSingle()
@@ -248,11 +306,8 @@ def setup():
     ''' Add sprites to groups '''
     player.add(hero)
 
-    tiles.add(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t19 , t18, t19, t20
-              , t21, t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35)
-
-    
-    items.add(i1, i2, i3)
+    for t in preped_tiles:
+        tiles.add(t)
     
     ''' set stage '''
     stage = START
@@ -295,6 +350,7 @@ while running:
             
     # Drawing code
     screen.fill(SKY_BLUE)
+    draw_grid(64)
     player.draw(screen)
     tiles.draw(screen)
     items.draw(screen)
