@@ -15,6 +15,11 @@ TITLE = "Name of Game"
 screen = pygame.display.set_mode(SIZE)
 pygame.display.set_caption(TITLE)
 
+world_width = 192 * SCALE
+world_height = 15 * SCALE
+world = pygame.Surface([world_width, world_height])
+world_x = 0
+world_y = 0
 
 # Timer
 clock = pygame.time.Clock()
@@ -54,6 +59,9 @@ grass_rightmerger_img = pygame.image.load('assets/images/tiles/grass_block_right
 grass_leftmerger_img = pygame.image.load('assets/images/tiles/grass_block_leftmerger.png').convert_alpha()
 grass_filler_img = pygame.image.load('assets/images/tiles/grass_block_filler.png').convert_alpha()
 
+platfrom_wooden_left = pygame.image.load('assets/images/tiles/wooden_platform_left.png').convert_alpha()
+platfrom_wooden_middle = pygame.image.load('assets/images/tiles/wooden_platform_middle.png').convert_alpha()
+platfrom_wooden_right = pygame.image.load('assets/images/tiles/wooden_platform_right.png').convert_alpha()
                   
 ''' items '''
 
@@ -99,6 +107,21 @@ class Tile(pygame.sprite.Sprite):
         #bounding_rect = self.mask.get_bounding_rects()
         #print(self.rect, bounding_rect)
 
+class Platform_Tile(pygame.sprite.Sprite):
+    def __init__(self, x, y, t_type):
+        super().__init__()
+
+        if t_type == "plf_w_l":
+            self.image = platfrom_wooden_left
+        elif t_type == "plf_w_m":
+            self.image = platfrom_wooden_middle
+        elif t_type == "plf_w_r":
+            self.image = platfrom_wooden_right
+
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.x = x * SCALE
+        self.rect.y = y * SCALE
     
 class Hero(pygame.sprite.Sprite):
     def __init__(self, x, y, image):
@@ -164,8 +187,8 @@ class Hero(pygame.sprite.Sprite):
     def check_edges(self):
         if self.rect.left < 0:
             self.rect.left = 0
-        elif self.rect.right > WIDTH:
-            self.rect.right = WIDTH
+        elif self.rect.right > world_width:
+            self.rect.right = world_width
 
     def process_items(self):
         pass
@@ -223,9 +246,17 @@ def show_end_screen():
 def show_stats():
     text = FONT_LG.render(str(player.score), 1, WHITE)
     screen.blit(text, [20, 20])
-       
+
+def calculate_offset():
+    x = -1 * hero.rect.centerx + WIDTH / 2
+
+    if x >= 0:
+        return 0, 0
+    else:
+        return x, 0
+
 def setup():
-    global hero, player, tiles, items, stage
+    global hero, player, tiles, platforms, items, stage
     
     ''' Make sprites '''
     hero = Hero(3, 7, hero_img)
@@ -295,19 +326,27 @@ def setup():
     Tile(22, 13, "grs_f"),
     Tile(22, 12, "grs_f"),
                         ]
-   
+    preped_platforms = [
+       Platform_Tile(0, 12, 'plf_w_l'),
+       Platform_Tile(1, 12, 'plf_w_m'),
+       Platform_Tile(2, 12, 'plf_w_r')
+       ]
        
     
     ''' Make sprite groups '''
     player = pygame.sprite.GroupSingle()
     items = pygame.sprite.Group()
     tiles = pygame.sprite.Group()
+    platforms = pygame.sprite.Group()
 
     ''' Add sprites to groups '''
     player.add(hero)
 
     for t in preped_tiles:
         tiles.add(t)
+
+    for p in preped_platforms:
+        platforms.add(p)
     
     ''' set stage '''
     stage = START
@@ -347,13 +386,15 @@ while running:
     if stage == PLAYING:
         player.update()
 
+    world_x, world_y = calculate_offset()
             
     # Drawing code
-    screen.fill(SKY_BLUE)
-    draw_grid(64)
-    player.draw(screen)
-    tiles.draw(screen)
-    items.draw(screen)
+    world.fill(SKY_BLUE)
+    player.draw(world)
+    tiles.draw(world)
+    items.draw(world)
+    platforms.draw(world)
+    screen.blit(world, [world_x, world_y])
         
     if stage == START:
         show_title_screen()        
