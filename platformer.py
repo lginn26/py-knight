@@ -158,10 +158,11 @@ class Hero(pygame.sprite.Sprite):
         hit_list = pygame.sprite.spritecollide(self, tiles, False)
 
         for hit in hit_list:
-            if self.vx > 0:
-                self.rect.right = hit.rect.left
-            elif self.vx < 0:
-                self.rect.left = hit.rect.right
+            if not hit.isplatform:
+                if self.vx > 0:
+                    self.rect.right = hit.rect.left
+                elif self.vx < 0:
+                    self.rect.left = hit.rect.right
                 
         ''' move in vertical direction and resolve colisions '''
         self.rect.y += self.vy
@@ -170,10 +171,11 @@ class Hero(pygame.sprite.Sprite):
         for hit in hit_list:
             if self.vy > 0:
                 self.rect.bottom = hit.rect.top
-            elif self.vy < 0:
+                
+            elif self.vy < 0 and not hit.isplatform:
                 self.rect.top = hit.rect.bottom
         
-            self.vy = 0
+                self.vy = 0
         
     def check_edges(self):
         if self.rect.left < 0:
@@ -318,6 +320,9 @@ def setup():
     Tile(21, 13, "grs_f"),
     Tile(22, 13, "grs_f"),
     Tile(22, 12, "grs_f"),
+    Tile(0, 10, "plf_wd_lft", True),
+    Tile(1, 10, "plf_wd_mid", True),
+    Tile(2, 10, "plf_wd_rht", True),  
                         ]      
     
     ''' Make sprite groups '''
