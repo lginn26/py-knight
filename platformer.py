@@ -79,7 +79,7 @@ END = 3
 
 # Game classes
 class Tile(pygame.sprite.Sprite):
-    def __init__(self, x, y, t_type):
+    def __init__(self, x, y, t_type, isplatform=False):
         super().__init__()
 
         if t_type == "grs_s":
@@ -98,7 +98,14 @@ class Tile(pygame.sprite.Sprite):
             self.image = grass_rightmerger_img
         elif t_type == "grs_f":
             self.image = grass_filler_img
+        elif t_type == "plf_wd_lft":
+            self.image = platfrom_wooden_left
+        elif t_type == "plf_wd_mid":
+            self.image = platfrom_wooden_middle
+        elif t_type == "plf_wd_rht":
+            self.image = platfrom_wooden_right
 
+        self.isplatform = isplatform
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = x * SCALE
@@ -106,6 +113,8 @@ class Tile(pygame.sprite.Sprite):
         
         #bounding_rect = self.mask.get_bounding_rects()
         #print(self.rect, bounding_rect)
+<<<<<<< HEAD
+=======
 
 class Platform_Tile(pygame.sprite.Sprite):
     def __init__(self, x, y, t_type):
@@ -122,6 +131,7 @@ class Platform_Tile(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x * SCALE
         self.rect.y = y * SCALE
+>>>>>>> 5a8770ac66760e4787e52cca8899d477608ce6f4
     
 class Hero(pygame.sprite.Sprite):
     def __init__(self, x, y, image):
@@ -181,7 +191,7 @@ class Hero(pygame.sprite.Sprite):
                 self.rect.bottom = hit.rect.top
             elif self.vy < 0:
                 self.rect.top = hit.rect.bottom
-
+        
             self.vy = 0
         
     def check_edges(self):
@@ -252,6 +262,11 @@ def calculate_offset():
 
     if x >= 0:
         return 0, 0
+<<<<<<< HEAD
+    elif x <= WIDTH:
+        return 0, 0
+=======
+>>>>>>> 5a8770ac66760e4787e52cca8899d477608ce6f4
     else:
         return x, 0
 
@@ -325,6 +340,9 @@ def setup():
     Tile(21, 13, "grs_f"),
     Tile(22, 13, "grs_f"),
     Tile(22, 12, "grs_f"),
+<<<<<<< HEAD
+                        ]      
+=======
                         ]
     preped_platforms = [
        Platform_Tile(0, 12, 'plf_w_l'),
@@ -332,21 +350,29 @@ def setup():
        Platform_Tile(2, 12, 'plf_w_r')
        ]
        
+>>>>>>> 5a8770ac66760e4787e52cca8899d477608ce6f4
     
     ''' Make sprite groups '''
     player = pygame.sprite.GroupSingle()
     items = pygame.sprite.Group()
     tiles = pygame.sprite.Group()
+<<<<<<< HEAD
+    
+=======
     platforms = pygame.sprite.Group()
 
+>>>>>>> 5a8770ac66760e4787e52cca8899d477608ce6f4
     ''' Add sprites to groups '''
     player.add(hero)
 
     for t in preped_tiles:
         tiles.add(t)
 
+<<<<<<< HEAD
+=======
     for p in preped_platforms:
         platforms.add(p)
+>>>>>>> 5a8770ac66760e4787e52cca8899d477608ce6f4
     
     ''' set stage '''
     stage = START
@@ -393,7 +419,10 @@ while running:
     player.draw(world)
     tiles.draw(world)
     items.draw(world)
+<<<<<<< HEAD
+=======
     platforms.draw(world)
+>>>>>>> 5a8770ac66760e4787e52cca8899d477608ce6f4
     screen.blit(world, [world_x, world_y])
         
     if stage == START:
