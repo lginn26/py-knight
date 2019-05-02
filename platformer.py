@@ -113,25 +113,6 @@ class Tile(pygame.sprite.Sprite):
         
         #bounding_rect = self.mask.get_bounding_rects()
         #print(self.rect, bounding_rect)
-<<<<<<< HEAD
-=======
-
-class Platform_Tile(pygame.sprite.Sprite):
-    def __init__(self, x, y, t_type):
-        super().__init__()
-
-        if t_type == "plf_w_l":
-            self.image = platfrom_wooden_left
-        elif t_type == "plf_w_m":
-            self.image = platfrom_wooden_middle
-        elif t_type == "plf_w_r":
-            self.image = platfrom_wooden_right
-
-        self.mask = pygame.mask.from_surface(self.image)
-        self.rect = self.image.get_rect()
-        self.rect.x = x * SCALE
-        self.rect.y = y * SCALE
->>>>>>> 5a8770ac66760e4787e52cca8899d477608ce6f4
     
 class Hero(pygame.sprite.Sprite):
     def __init__(self, x, y, image):
@@ -262,16 +243,13 @@ def calculate_offset():
 
     if x >= 0:
         return 0, 0
-<<<<<<< HEAD
     elif x <= WIDTH:
         return 0, 0
-=======
->>>>>>> 5a8770ac66760e4787e52cca8899d477608ce6f4
     else:
         return x, 0
 
 def setup():
-    global hero, player, tiles, platforms, items, stage
+    global hero, player, tiles, items, stage
     
     ''' Make sprites '''
     hero = Hero(3, 7, hero_img)
@@ -340,44 +318,22 @@ def setup():
     Tile(21, 13, "grs_f"),
     Tile(22, 13, "grs_f"),
     Tile(22, 12, "grs_f"),
-<<<<<<< HEAD
                         ]      
-=======
-                        ]
-    preped_platforms = [
-       Platform_Tile(0, 12, 'plf_w_l'),
-       Platform_Tile(1, 12, 'plf_w_m'),
-       Platform_Tile(2, 12, 'plf_w_r')
-       ]
-       
->>>>>>> 5a8770ac66760e4787e52cca8899d477608ce6f4
     
     ''' Make sprite groups '''
     player = pygame.sprite.GroupSingle()
     items = pygame.sprite.Group()
     tiles = pygame.sprite.Group()
-<<<<<<< HEAD
-    
-=======
-    platforms = pygame.sprite.Group()
 
->>>>>>> 5a8770ac66760e4787e52cca8899d477608ce6f4
     ''' Add sprites to groups '''
     player.add(hero)
 
     for t in preped_tiles:
         tiles.add(t)
-
-<<<<<<< HEAD
-=======
-    for p in preped_platforms:
-        platforms.add(p)
->>>>>>> 5a8770ac66760e4787e52cca8899d477608ce6f4
     
     ''' set stage '''
     stage = START
 
-    
 # Game loop
 setup()
 
@@ -419,10 +375,6 @@ while running:
     player.draw(world)
     tiles.draw(world)
     items.draw(world)
-<<<<<<< HEAD
-=======
-    platforms.draw(world)
->>>>>>> 5a8770ac66760e4787e52cca8899d477608ce6f4
     screen.blit(world, [world_x, world_y])
         
     if stage == START:
