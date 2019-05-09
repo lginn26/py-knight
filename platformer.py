@@ -58,6 +58,7 @@ gem_snd = load_sound('assets/sounds/gem.ogg')
 
 # Images
 idle = load_image('assets/images/characters/py_knight_rht.png')
+
 walk = [load_image('assets/images/characters/py_knight_rht_w2.png'),
         load_image('assets/images/characters/py_knight_rht_w3.png'),
         load_image('assets/images/characters/py_knight_rht_w4.png'),
@@ -67,26 +68,27 @@ walk = [load_image('assets/images/characters/py_knight_rht_w2.png'),
         load_image('assets/images/characters/py_knight_rht_w8.png'),
         ]
 jump = load_image('assets/images/characters/py_knight_rht_jump.png')
+
 hurt = load_image('assets/images/characters/py_knight_rht_hit.png')
+
+swing = [load_image('assets/images/characters/py_knight_rht_sw1.png'),
+        load_image('assets/images/characters/py_knight_rht_sw2.png'),
+        load_image('assets/images/characters/py_knight_rht_sw3.png'),
+        load_image('assets/images/characters/py_knight_rht_sw4.png'),
+        load_image('assets/images/characters/py_knight_rht_sw5.png')
+        ]
                    
 hero_images = { "idle_rt": idle,
                 "walk_rt": walk,
                 "jump_rt": jump,
                 "hurt_rt": hurt,
+                "swing_rt": swing,
                 "idle_lt": flip_image(idle),
                 "walk_lt" : [flip_image(img) for img in walk],
+                "swing_lt": [flip_image(img) for img in swing],
                 "jump_lt": flip_image(jump),
                 "hurt_lt": flip_image(hurt) }
-                   
-hero_images = { "idle_rt": idle,
-                "walk_rt": walk,
-                "jump_rt": jump,
-                "hurt_rt": hurt,
-                "idle_lt": flip_image(idle),
-                "walk_lt" : [flip_image(img) for img in walk],
-                "jump_lt": flip_image(jump),
-                "hurt_lt": flip_image(hurt) }
-             
+                                
 tile_images = { "Grass": load_image('assets/images/tiles/grass_block_surface.png'),
                 "Dirt": load_image('assets/images/tiles/platformPack_tile007.png'),
                 "Platform": load_image('assets/images/tiles/platformPack_tile007.png'),
@@ -130,6 +132,8 @@ class Hero(pygame.sprite.Sprite):
         self.jump_power = 26
         self.vx = 0
         self.vy = 0
+
+        self.swinging = False
 
         self.hearts = 3
         self.hurt_timer = 0
@@ -177,6 +181,9 @@ class Hero(pygame.sprite.Sprite):
             self.vy = -self.jump_power
             jump_snd.play()
 
+    def swing(self):
+        self.swinging = True
+                
     def apply_gravity(self, level):
         self.vy += level.gravity
 
@@ -236,12 +243,14 @@ class Hero(pygame.sprite.Sprite):
             walk = self.images['walk_rt']
             jump = self.images['jump_rt']
             hurt = self.images['hurt_rt']
+            swing = self.images['swing_rt']
         else:
             idle = self.images['idle_lt']
             walk = self.images['walk_lt']
             jump = self.images['jump_lt']
             hurt = self.images['hurt_lt']
-
+            swing = self.images['swing_lt']
+        
         if self.hurt_timer > 0:
             self.image = hurt
         elif self.vy != 0:
@@ -719,6 +728,8 @@ class Game():
                 self.hero.move_left()
             elif pressed[pygame.K_RIGHT]:
                 self.hero.move_right()
+            elif pressed[pygame.K_z]:
+                self.hero.swing()
             else:
                 self.hero.stop()
      
