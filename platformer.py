@@ -12,7 +12,7 @@ pygame.init()
 SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 576
 TITLE = "Name of Game"
-FPS = 60
+FPS = 80
 
 # Optional grid for help with level design
 show_grid = True
@@ -58,14 +58,19 @@ gem_snd = load_sound('assets/sounds/gem.ogg')
 
 # Images
 idle = load_image('assets/images/characters/py_knight_rht.png')
-walk1 = load_image('assets/images/characters/py_knight_rht_w1.png')
-walk2 = load_image('assets/images/characters/py_knight_rht_w2.png')
-jump = load_image('assets/images/characters/py_knight_rht.png')
-hurt = load_image('assets/images/characters/py_knight_rht.png')
+walk1 = load_image('assets/images/characters/py_knight_rht_w2.png')
+walk2 = load_image('assets/images/characters/py_knight_rht_w3.png')
+jump = load_image('assets/images/characters/py_knight_rht_jump.png')
+hurt = load_image('assets/images/characters/py_knight_rht_hit.png')
                    
 hero_images = { "idle_rt": idle,
                 "walk1_rt": walk1,
                 "walk2_rt": walk2,
+                "walk3_rt": walk3,
+                "walk4_rt": walk4,
+                "walk5_rt": walk5,
+                "walk6_rt": walk6,
+                "walk7_rt": walk7,
                 "jump_rt": jump,
                 "hurt_rt": hurt,
                 "idle_lt": flip_image(idle),
