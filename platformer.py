@@ -133,7 +133,7 @@ class Hero(pygame.sprite.Sprite):
         self.vx = 0
         self.vy = 0
 
-        self.swinging = False
+        self.swinging = 0
 
         self.hearts = 3
         self.hurt_timer = 0
@@ -177,13 +177,17 @@ class Hero(pygame.sprite.Sprite):
         return len(hit_list) > 0
         
     def jump(self, tiles):
-        if self.can_jump(tiles):
+        if self.can_jump(tiles) and self.swinging == 0:
             self.vy = -self.jump_power
             jump_snd.play()
 
+    def init_swing(self):
+        self.swinging = 50
+
     def swing(self):
-        self.swinging = True
-                
+        if self.swinging > 0:
+            self.swinging -= 5
+        
     def apply_gravity(self, level):
         self.vy += level.gravity
 
@@ -191,7 +195,10 @@ class Hero(pygame.sprite.Sprite):
             self.vy = level.terminal_velocity
 
     def move_and_check_tiles(self, level):
-        self.rect.x += self.vx
+
+        if self.swinging == 0:
+            self.rect.x += self.vx
+            
         hit_list = pygame.sprite.spritecollide(self, level.main_tiles, False)
 
         for hit in hit_list:
@@ -249,7 +256,7 @@ class Hero(pygame.sprite.Sprite):
             walk = self.images['walk_lt']
             jump = self.images['jump_lt']
             hurt = self.images['hurt_lt']
-            swing = self.images['swing_lt']
+            swing = self.images['swing_lt']                         
         
         if self.hurt_timer > 0:
             self.image = hurt
@@ -259,6 +266,17 @@ class Hero(pygame.sprite.Sprite):
             self.image = idle
         else:
             self.image = walk[self.walk_index]
+
+        if 50 < self.swinging > 40:
+            self.image = swing[0]
+        elif 40 < self.swinging > 30:
+            self.image = swing[1]
+        elif 30 < self.swinging > 20:
+            self.image = swing[2]
+        elif 20 < self.swinging > 10:
+            self.image = swing[3]
+        elif 10 < self.swinging > 0:
+            self.image = swing[4]
             
     def update(self, level):
         self.apply_gravity(level)
@@ -266,6 +284,7 @@ class Hero(pygame.sprite.Sprite):
         self.check_world_edges(level)
         self.process_items(level)
         self.process_enemies(level)
+        self.swing()
         self.check_goal(level)
         self.set_image()
 
@@ -728,8 +747,8 @@ class Game():
                 self.hero.move_left()
             elif pressed[pygame.K_RIGHT]:
                 self.hero.move_right()
-            elif pressed[pygame.K_z]:
-                self.hero.swing()
+            elif pressed[pygame.K_z] and self.hero.swinging == 0:
+                self.hero.init_swing()
             else:
                 self.hero.stop()
      
