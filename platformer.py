@@ -50,7 +50,7 @@ font_xs = load_font(None, 16)
 font_sm = load_font(None, 32)
 font_md = load_font(None, 48)
 font_lg = load_font(None, 64)
-font_xl = load_font("assets/fonts/Cheri.ttf", 80)
+font_xl = load_font("assets/fonts/cheri.ttf", 80)
 
 # Sounds
 jump_snd = load_sound('assets/sounds/jump.ogg')
@@ -100,6 +100,7 @@ tile_images = { "Grass_surface": load_image('assets/images/tiles/grass_block_sur
                 "Wooden_Platform_lft": load_image('assets/images/tiles/wooden_platform_left.png'),
                 "Wooden_Platform_mid": load_image('assets/images/tiles/wooden_platform_middle.png'),
                 "Wooden_Platform_rht": load_image('assets/images/tiles/wooden_platform_right.png'),
+                "Wooden_Spikes": load_image('assets/images/tiles/root_spikes.png'),
                 "Plant": load_image('assets/images/tiles/platformPack_tile045.png'),
                 "FlagTop": load_image('assets/images/tiles/medievalTile_166.png'),
                 "FlagPole": load_image('assets/images/tiles/medievalTile_190.png') }
@@ -119,10 +120,11 @@ levels = ["assets/levels/level_1.json",
     
 # Sprite classes
 class Tile(pygame.sprite.Sprite):
-    def __init__(self, x, y, image):
+    def __init__(self, x, y, image, t_type="solid"):
         super().__init__()
 
         self.image = image
+        self.t_type = t_type
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -226,6 +228,10 @@ class Hero(pygame.sprite.Sprite):
                 self.rect.top = hit.rect.bottom
             self.vy = 0
 
+            if self.rect.bottom == hit.rect.top and t_type == "hurt":
+                self.hearts = 0 
+                self.hurt_timer = 10
+                
     def process_items(self, level):
         hit_list = pygame.sprite.spritecollide(self, level.items, True)
 
