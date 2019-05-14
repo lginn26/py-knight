@@ -39,7 +39,10 @@
 			[6, 8, "Grass_surface"],
 			[7, 8, "Grass_surface"],
 			[8, 8, "Grass_merger_lft"],
-			[8, 8, "Wooden_Spikes", "hurt"]
+			[8, 7, "Grass_wall_lft"],
+			[8, 6, "Grass_corner_lft"],
+			[9, 6, "Grass_surface"],
+			
 		],
 
 		"foreground": [
