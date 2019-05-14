@@ -8,9 +8,6 @@ import sys
 pygame.mixer.pre_init()
 pygame.init()
 
-def foo(bar):
-    return 6*bar
-
 # Window
 SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 576
@@ -304,6 +301,7 @@ class Hero(pygame.sprite.Sprite):
         self.swing()
         self.check_goal(level)
         self.set_image()
+
 
 class BasicEnemy(pygame.sprite.Sprite):
     '''

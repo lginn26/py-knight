@@ -38,7 +38,7 @@
 			[5, 8, "Grass_surface"],
 			[6, 8, "Grass_surface"],
 			[7, 8, "Grass_surface"],
-			[8, 8, "Grass_merger_lft"]
+			[8, 8, "Grass_merger_lft"],
 			[8, 8, "Wooden_Spikes", "hurt"]
 		],
 
