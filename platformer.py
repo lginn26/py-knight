@@ -71,21 +71,28 @@ jump = load_image('assets/images/characters/py_knight_rht_jump.png')
 
 hurt = load_image('assets/images/characters/py_knight_rht_hit.png')
 
-swing = [load_image('assets/images/characters/py_knight_rht_sw1.png'),
+swing_rt = [load_image('assets/images/characters/py_knight_rht_sw1.png'),
         load_image('assets/images/characters/py_knight_rht_sw2.png'),
         load_image('assets/images/characters/py_knight_rht_sw3.png'),
         load_image('assets/images/characters/py_knight_rht_sw4.png'),
         load_image('assets/images/characters/py_knight_rht_sw5.png')
+        ]
+
+swing_lt = [load_image('assets/images/characters/py_knight_lft_sw1.png'),
+        load_image('assets/images/characters/py_knight_lft_sw2.png'),
+        load_image('assets/images/characters/py_knight_lft_sw3.png'),
+        load_image('assets/images/characters/py_knight_lft_sw4.png'),
+        load_image('assets/images/characters/py_knight_lft_sw5.png')
         ]
                    
 hero_images = { "idle_rt": idle,
                 "walk_rt": walk,
                 "jump_rt": jump,
                 "hurt_rt": hurt,
-                "swing_rt": swing,
+                "swing_rt": swing_rt,
                 "idle_lt": flip_image(idle),
                 "walk_lt" : [flip_image(img) for img in walk],
-                "swing_lt": [flip_image(img) for img in swing],
+                "swing_lt": swing_lt,
                 "jump_lt": flip_image(jump),
                 "hurt_lt": flip_image(hurt) }
                                 
