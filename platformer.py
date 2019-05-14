@@ -228,7 +228,7 @@ class Hero(pygame.sprite.Sprite):
                 self.rect.top = hit.rect.bottom
             self.vy = 0
 
-            if self.rect.bottom == hit.rect.top and t_type == "hurt":
+            if self.rect.bottom == hit.rect.top and hit.t_type == "hurt":
                 self.hearts = 0 
                 self.hurt_timer = 10
                 
@@ -523,7 +523,12 @@ class Level():
                 y = element[1] * self.scale
                 kind = element[2]
 
-                t = Tile(x, y, tile_images[kind])
+                if len(element) > 3:
+                    ttype = element[3]
+                else:
+                    ttype = "solid"
+
+                t = Tile(x, y, tile_images[kind], ttype)
 
                 if group_name == 'midground':
                     self.midground_tiles.add(t)
