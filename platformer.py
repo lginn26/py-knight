@@ -9,7 +9,7 @@ pygame.mixer.pre_init()
 pygame.init()
 
 def foo(bar):
-    return 5*bar
+    return 11*bar
 
 # Window
 SCREEN_WIDTH = 1024
