@@ -104,9 +104,9 @@ tile_images = { "Grass_surface": load_image('assets/images/tiles/grass_block_sur
                 "Grass_corner_rht": load_image('assets/images/tiles/grass_block_rightcorner.png'),
                 "Grass_merger_lft": load_image('assets/images/tiles/grass_block_leftmerger.png'),
                 "Grass_merger_rht": load_image('assets/images/tiles/grass_block_rightmerger.png'),                
-                "Wooden_Platform_lft": load_image('assets/images/tiles/wooden_platform_left.png'),
-                "Wooden_Platform_mid": load_image('assets/images/tiles/wooden_platform_middle.png'),
-                "Wooden_Platform_rht": load_image('assets/images/tiles/wooden_platform_right.png'),
+                "Wooden_Platform_lft": load_image('assets/images/tiles/wooden_platform_lft.png'),
+                "Wooden_Platform_mid": load_image('assets/images/tiles/wooden_platform_mid.png'),
+                "Wooden_Platform_rht": load_image('assets/images/tiles/wooden_platform_rht.png'),
                 "Wooden_Spikes": load_image('assets/images/tiles/root_spikes.png'),
                 "Plant": load_image('assets/images/tiles/platformPack_tile045.png'),
                 "FlagTop": load_image('assets/images/tiles/medievalTile_166.png'),
@@ -219,9 +219,9 @@ class Hero(pygame.sprite.Sprite):
         hit_list = pygame.sprite.spritecollide(self, level.main_tiles, False)
 
         for hit in hit_list:
-            if self.vx > 0:
+            if self.vx > 0 and not hit.t_type == "platform":
                 self.rect.right = hit.rect.left
-            elif self.vx < 0:
+            elif self.vx < 0 and not hit.t_type == "platform":
                 self.rect.left = hit.rect.right
             self.vx = 0
                 
@@ -231,7 +231,7 @@ class Hero(pygame.sprite.Sprite):
         for hit in hit_list:
             if self.vy > 0:
                 self.rect.bottom = hit.rect.top
-            elif self.vy < 0:
+            elif self.vy < 0 and not hit.t_type:
                 self.rect.top = hit.rect.bottom
             self.vy = 0
 
