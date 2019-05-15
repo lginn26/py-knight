@@ -42,6 +42,9 @@
 			[8, 7, "Grass_wall_lft"],
 			[8, 6, "Grass_corner_lft"],
 			[9, 6, "Grass_surface"],
+			[3, 5, "Wooden_Platform_lft", "platform"],
+			[4, 5, "Wooden_Platform_mid", "platform"],
+			[5, 5, "Wooden_Platform_rht", "platform"]
 			
 		],
 
