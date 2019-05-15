@@ -41,17 +41,21 @@
 			[8, 8, "Grass_merger_lft"],
 			[8, 7, "Grass_wall_lft"],
 			[8, 6, "Grass_corner_lft"],
-			[9, 6, "Grass_surface"],
-			[3, 5, "Wooden_Platform_lft", "platform"],
-			[4, 5, "Wooden_Platform_mid", "platform"],
-			[5, 5, "Wooden_Platform_rht", "platform"]
+			[9, 6, "Grass_corner_rht"],
+            [9, 7, "Grass_wall_rht"],
+            [9, 8, "Grass_wall_rht"],
+            [10, 8, "Wooden_Spikes", "hurt"],
+            [11, 8, "Wooden_Spikes", "hurt"],
+            [12, 8, "Wooden_Spikes", "hurt"],
+            [13, 8, "Grass_wall_lft"],
+            [13, 7, "Grass_wall_lft"],
+            [13, 6, "Grass_corner_lft"]
+
 			
 		],
 
 		"foreground": [
-			[12, 7, "Plant"],
-			[19, 7, "Plant"],
-			[34, 7, "Plant"]
+
 		]
 	},
 
