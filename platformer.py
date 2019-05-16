@@ -288,6 +288,12 @@ class Hero(pygame.sprite.Sprite):
         else:
             self.image = walk[self.walk_index]
 
+        if self.swinging > 40 and not self.facing_right:
+            self.rect.x -= 32
+        elif self.swinging > 40 and self.facing_right:
+            self.rect.x += 16
+
+
         if 50 < self.swinging > 40:
             self.image = swing[0]
         elif 40 < self.swinging > 30:
