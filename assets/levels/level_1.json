@@ -124,15 +124,16 @@
 			[36, 8, "Grass_filler"],
 
 			[37, 7, "Grass_corner_rht"],
-			[37, 8, "Grass_merger_rht"]
+			[37, 8, "Grass_merger_rht"],
 
-
-
-
-
-
-
-
+			[38, 8, "Grass_surface"],
+			[39, 8, "Grass_surface"],
+			[40, 8, "Grass_surface"],
+			[41, 8, "Grass_surface"],
+			[42, 8, "Grass_surface"],
+			[43, 8, "Grass_surface"],
+			[44, 8, "Grass_surface"],
+			[45, 8, "Grass_corner_rht"]
 
 		],
 
@@ -149,9 +150,11 @@
 	],
 
 	"enemies": [
-		[11, 2, "BasicEnemy"],
-		[18, 7, "BasicEnemy"],
-		[30, 5, "PlatformEnemy"],
-		[34, 3, "PlatformEnemy"]
+		[13, 5, "PlatformEnemy"],
+		[24, 6, "PlatformEnemy"],
+		[26, 4, "PlatformEnemy"],
+		[24, 6, "PlatformEnemy"],
+		[38, 6, "PlatformEnemy"],
+		[22, 3, "PlatformEnemy"]
 	]
 }
