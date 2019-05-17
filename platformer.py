@@ -235,7 +235,7 @@ class Hero(pygame.sprite.Sprite):
         for hit in hit_list:
             if self.vy > 0:
                 self.rect.bottom = hit.rect.top
-            elif self.vy < 0 and not hit.t_type:
+            elif self.vy < 0 and not hit.t_type == "platform":
                 self.rect.top = hit.rect.bottom
             self.vy = 0
 
