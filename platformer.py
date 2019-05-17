@@ -198,12 +198,16 @@ class Hero(pygame.sprite.Sprite):
             self.vy = -self.jump_power
             jump_snd.play()
 
+    def can_swing(self):
+        return self.swinging == 0
+
     def init_swing(self):
         self.swinging = 50
 
     def swing(self):
         if self.swinging > 0:
             self.swinging -= 5
+            self.vx = 0
         
     def apply_gravity(self, level):
         self.vy += level.gravity
@@ -238,7 +242,7 @@ class Hero(pygame.sprite.Sprite):
             if self.rect.bottom == hit.rect.top and hit.t_type == "hurt":
                 self.hearts = 0 
                 self.hurt_timer = 10
-                
+
     def process_items(self, level):
         hit_list = pygame.sprite.spritecollide(self, level.items, True)
 
@@ -770,12 +774,12 @@ class Game():
         pressed = pygame.key.get_pressed()
         
         if self.stage == Game.PLAYING:
-            if pressed[pygame.K_LEFT]:
-                self.hero.move_left()
+            if pressed[pygame.K_z] and self.hero.can_swing():
+                self.hero.init_swing()
             elif pressed[pygame.K_RIGHT]:
                 self.hero.move_right()
-            elif pressed[pygame.K_z] and self.hero.swinging == 0:
-                self.hero.init_swing()
+            elif pressed[pygame.K_LEFT]:
+                self.hero.move_left()
             else:
                 self.hero.stop()
      
