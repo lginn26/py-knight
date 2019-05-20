@@ -115,8 +115,9 @@ tile_images = { "Grass_surface": load_image('assets/images/tiles/grass_block_sur
 basic_enemy_images = [ load_image('assets/images/characters/platformPack_tile024a.png'),
                        load_image('assets/images/characters/platformPack_tile024b.png') ]
 
-platform_enemy_images = [ load_image('assets/images/characters/platformPack_tile011a.png'),
-                          load_image('assets/images/characters/platformPack_tile011b.png') ] 
+platform_enemy_images = [ load_image('assets/images/characters/squire_1.png'),
+                          load_image('assets/images/characters/squire_2.png'),
+                          load_image('assets/images/characters/squire_3.png')]
 
 item_images = { "Gem": load_image('assets/images/items/platformPack_item008.png') }
 
