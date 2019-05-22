@@ -11,7 +11,7 @@ pygame.init()
 # Window
 SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 576
-TITLE = "Name of Game"
+TITLE = "Py Knight"
 FPS = 80
 
 # Optional grid for help with level design
@@ -55,6 +55,9 @@ font_xl = load_font("assets/fonts/cheri.ttf", 80)
 # Sounds
 jump_snd = load_sound('assets/sounds/jump.ogg')
 gem_snd = load_sound('assets/sounds/gem.ogg')
+player_hit_snd = load_sound('assets/sounds/player_hit.ogg')
+swing_snd = load_sound('assets/sounds/player_swing.ogg')
+enemy_hit_snd = load_sound('assets/sounds/player_hit.ogg')
 
 # Images
 idle = load_image('assets/images/characters/py_knight_rht.png')
@@ -206,6 +209,7 @@ class Hero(pygame.sprite.Sprite):
 
     def init_swing(self):
         self.swinging = 50
+        swing_snd.play()
 
     def swing(self):
         if self.swinging > 0:
@@ -245,6 +249,7 @@ class Hero(pygame.sprite.Sprite):
             if self.rect.bottom == hit.rect.top and hit.t_type == "hurt":
                 self.hearts = 0 
                 self.hurt_timer = 10
+                player_hit_snd.play()
 
     def process_items(self, level):
         hit_list = pygame.sprite.spritecollide(self, level.items, True)
@@ -260,6 +265,7 @@ class Hero(pygame.sprite.Sprite):
             hit_list = pygame.sprite.spritecollide(self, level.enemies, False)
 
             for hit in hit_list:
+                player_hit_snd.play()
                 self.hearts -= 1
                 self.hurt_timer = 30
     
@@ -705,21 +711,21 @@ class Game():
         screen.blit(text, rect)
         
     def show_cleared_screen(self):
-        text = font_lg.render("Level cleared", 1, BLACK)
+        text = font_lg.render("Victory", 1, BLACK)
         rect = text.get_rect()
         rect.centerx = SCREEN_WIDTH // 2
         rect.centery = 144
         screen.blit(text, rect)
 
     def show_win_screen(self):
-        text = font_lg.render("You win", 1, BLACK)
+        text = font_lg.render("Victory", 1, BLACK)
         rect = text.get_rect()
         rect.centerx = SCREEN_WIDTH // 2
         rect.centery = 144
         screen.blit(text, rect)
 
     def show_lose_screen(self):
-        text = font_lg.render("You lose", 1, BLACK)
+        text = font_lg.render("Defeat", 1, BLACK)
         rect = text.get_rect()
         rect.centerx = SCREEN_WIDTH // 2
         rect.centery = 144
