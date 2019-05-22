@@ -118,6 +118,9 @@ basic_enemy_images = [ load_image('assets/images/characters/platformPack_tile024
 platform_enemy_images = [ load_image('assets/images/characters/squire_1.png'),
                           load_image('assets/images/characters/squire_2.png')]
 
+platformenemy = {"walk_rt": platform_enemy_images,
+                 "walk_lt": [flip_image(img) for img in platform_enemy_images]}
+
 item_images = { "Gem": load_image('assets/images/items/platformPack_item008.png') }
 
 # Levels
@@ -325,7 +328,7 @@ class BasicEnemy(pygame.sprite.Sprite):
         super().__init__()
 
         self.images = images
-        self.image = images[0]
+        self.image = images['walk_lt'][0]
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -383,7 +386,11 @@ class BasicEnemy(pygame.sprite.Sprite):
             self.walk_index = (self.walk_index + 1) % len(self.images)
 
     def set_image(self):
-        self.image = self.images[self.walk_index]
+        if self.vx>0:
+            self.image = self.images['walk_lt'][self.walk_index]
+        else:
+            self.image = self.images['walk_rt'][self.walk_index]
+        
         
     def update(self, level):
         self.should_reverse = False
@@ -572,7 +579,7 @@ class Level():
             if kind == "BasicEnemy":
                 s = BasicEnemy(x, y, basic_enemy_images)
             elif kind == "PlatformEnemy":
-                s = PlatformEnemy(x, y, platform_enemy_images)
+                s = PlatformEnemy(x, y, platformenemy)
                 
             self.enemies.add(s)
 
