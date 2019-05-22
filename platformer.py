@@ -15,7 +15,7 @@ TITLE = "Py Knight"
 FPS = 80
 
 # Optional grid for help with level design
-show_grid = True
+show_grid = False
 grid_color = (150, 150, 150)
 
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
@@ -57,7 +57,7 @@ jump_snd = load_sound('assets/sounds/jump.ogg')
 gem_snd = load_sound('assets/sounds/gem.ogg')
 player_hit_snd = load_sound('assets/sounds/player_hit.ogg')
 swing_snd = load_sound('assets/sounds/player_swing.ogg')
-enemy_hit_snd = load_sound('assets/sounds/player_hit.ogg')
+enemy_hit_snd = load_sound('assets/sounds/enemy_hit.ogg')
 
 # Images
 idle = load_image('assets/images/characters/py_knight_rht.png')
@@ -211,11 +211,17 @@ class Hero(pygame.sprite.Sprite):
         self.swinging = 50
         swing_snd.play()
 
-    def swing(self):
+    def swing(self,level):
         if self.swinging > 0:
             self.swinging -= 5
             self.vx = 0
-        
+
+            hit_list = pygame.sprite.spritecollide(self, level.enemies, True)
+
+            for hit in hit_list:
+                hit.kill()
+                enemy_hit_snd.play()
+                
     def apply_gravity(self, level):
         self.vy += level.gravity
 
@@ -265,9 +271,10 @@ class Hero(pygame.sprite.Sprite):
             hit_list = pygame.sprite.spritecollide(self, level.enemies, False)
 
             for hit in hit_list:
-                player_hit_snd.play()
-                self.hearts -= 1
-                self.hurt_timer = 30
+                if self.swinging == 0:
+                    player_hit_snd.play()
+                    self.hearts -= 1
+                    self.hurt_timer = 30
     
     def check_world_edges(self, level):
         if self.rect.left < 0:
@@ -318,7 +325,7 @@ class Hero(pygame.sprite.Sprite):
         self.check_world_edges(level)
         self.process_items(level)
         self.process_enemies(level)
-        self.swing()
+        self.swing(level)
         self.check_goal(level)
         self.set_image()
 
