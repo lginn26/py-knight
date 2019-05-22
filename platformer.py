@@ -116,8 +116,7 @@ basic_enemy_images = [ load_image('assets/images/characters/platformPack_tile024
                        load_image('assets/images/characters/platformPack_tile024b.png') ]
 
 platform_enemy_images = [ load_image('assets/images/characters/squire_1.png'),
-                          load_image('assets/images/characters/squire_2.png'),
-                          load_image('assets/images/characters/squire_3.png')]
+                          load_image('assets/images/characters/squire_2.png')]
 
 item_images = { "Gem": load_image('assets/images/items/platformPack_item008.png') }
 
