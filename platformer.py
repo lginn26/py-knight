@@ -111,6 +111,21 @@ tile_images = { "Grass_surface": load_image('assets/images/tiles/grass_block_sur
                 "Wooden_Platform_mid": load_image('assets/images/tiles/wooden_platform_mid.png'),
                 "Wooden_Platform_rht": load_image('assets/images/tiles/wooden_platform_rht.png'),
                 "Wooden_Spikes": load_image('assets/images/tiles/root_spikes.png'),
+
+                "Cave_surface": load_image('assets/images/tiles/cave_block_surfac.png'),
+                "Cave_filler": load_image('assets/images/tiles/cave_block_filler.png'),
+                "Cave_wall_lft": load_image('assets/images/tiles/cave_block_leftwall.png'),
+                "Cave_wall_rht": load_image('assets/images/tiles/cave_block_rightwall.png'),
+                "Cave_corner_lft": load_image('assets/images/tiles/cave_block_leftcorner.png'),
+                "Cave_corner_rht": load_image('assets/images/tiles/cave_block_rightcorner.png'),
+                "Cave_merger_lft": load_image('assets/images/tiles/cave_block_leftmerger.png'),
+                "Cave_merger_rht": load_image('assets/images/tiles/cave_block_rightmerger.png'),
+                "Cave_ceilingcorner_lft": load_image('assets/images/tiles/cave_block_lefttopcorner.png'),
+                "Cave_ceilingcorner_rht": load_image('assets/images/tiles/cave_block_righttopcorner.png'),
+                "Cave_celingmerger_lft": load_image('assets/images/tiles/cave_block_leftmerger.png'),
+                "Cave_celingmerger_rht": load_image('assets/images/tiles/cave_block_rightcelingmerger.png'),
+                
+                
                 "Plant": load_image('assets/images/tiles/platformPack_tile045.png'),
                 "FlagTop": load_image('assets/images/tiles/medievalTile_166.png'),
                 "FlagPole": load_image('assets/images/tiles/medievalTile_190.png') }
@@ -795,13 +810,13 @@ class Game():
                     if event.key == pygame.K_SPACE:
                         self.hero.jump(self.level.main_tiles)
 
+                elif self.stage == Game.WIN or self.stage == Game.LOSE:
+                    if event.key == pygame.K_SPACE:
+                        self.setup()
+                
                     elif event.key == pygame.K_p and self.stage == Game.PLAYING:
                         self.stage = Game.PAUSE
-                        
-                elif self.stage == Game.WIN or self.stage == Game.LOSE:
-                    if event.key == pygame.K_p:
-                        self.setup()
-
+                          
                 elif self.stage == Game.PAUSE:
                     if event.key == pygame.K_p:
                         self.stage = Game.PLAYING
