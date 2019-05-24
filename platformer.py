@@ -49,8 +49,8 @@ WHITE = (255, 255, 255)
 font_xs = load_font(None, 16)
 font_sm = load_font(None, 32)
 font_md = load_font(None, 48)
-font_lg = load_font(None, 64)
-font_xl = load_font("assets/fonts/cheri.ttf", 80)
+font_lg = load_font("assets/fonts/helmswald_post_demo.otf", 64)
+font_xl = load_font("assets/fonts/helmswald_post_demo.otf", 80)
 
 # Sounds
 jump_snd = load_sound('assets/sounds/jump.ogg')
@@ -663,6 +663,7 @@ class Game():
     START = 0
     PLAYING = 1
     CLEARED = 2
+    PAUSE = 5
     WIN = 3
     LOSE = 4
 
@@ -719,6 +720,13 @@ class Game():
         
     def show_cleared_screen(self):
         text = font_lg.render("Victory", 1, BLACK)
+        rect = text.get_rect()
+        rect.centerx = SCREEN_WIDTH // 2
+        rect.centery = 144
+        screen.blit(text, rect)
+
+    def show_pause_screen(self):
+        text = font_lg.render("PAUSED", 1, BLACK)
         rect = text.get_rect()
         rect.centerx = SCREEN_WIDTH // 2
         rect.centery = 144
@@ -787,9 +795,16 @@ class Game():
                     if event.key == pygame.K_SPACE:
                         self.hero.jump(self.level.main_tiles)
 
+                    elif event.key == pygame.K_p and self.stage == Game.PLAYING:
+                        self.stage = Game.PAUSE
+                        
                 elif self.stage == Game.WIN or self.stage == Game.LOSE:
-                    if event.key == pygame.K_SPACE:
+                    if event.key == pygame.K_p:
                         self.setup()
+
+                elif self.stage == Game.PAUSE:
+                    if event.key == pygame.K_p:
+                        self.stage = Game.PLAYING
 
         pressed = pygame.key.get_pressed()
         
@@ -852,6 +867,8 @@ class Game():
             self.show_win_screen()
         elif self.stage == Game.LOSE:
             self.show_lose_screen()
+        elif self.stage == Game.PAUSE:
+            self.show_pause_screen()
 
         pygame.display.flip()
             
