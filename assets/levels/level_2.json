@@ -1,0 +1,49 @@
+{
+	"layout": {
+		"scale": 64,
+		"size": [48, 9],
+		"start": [1, 7],
+		"goal": [44, 3, 2, 5]
+	},
+
+	"physics": {
+		"gravity": 1.5,
+		"terminal_velocity": 36
+	},
+
+	"music": "assets/sounds/theme.ogg",
+
+	"background": {
+		"color": [0, 0, 0],
+		"image1": "assets/images/backgrounds/Sky.png",
+		"image2": "assets/images/backgrounds/Hills_2.png",
+		"parallax_speed1": 0.6,
+		"parallax_speed2": 0.3
+	},
+
+	"tiles": {
+		"midground": [
+			[44.8, 4, "FlagTop"],
+			[44.8, 5, "FlagPole"],
+			[44.8, 6, "FlagPole"],
+			[44.8, 7, "FlagPole"]
+		],
+
+		"main": [
+			
+
+		],
+
+		"foreground": [
+
+		]
+	},
+
+	"items": [
+		
+	],
+
+	"enemies": [
+		
+	]
+}
