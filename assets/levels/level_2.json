@@ -77,6 +77,6 @@
 	],
 
 	"enemies": [
-		
+		[5, 7, "BasicEnemy"]
 	]
 }

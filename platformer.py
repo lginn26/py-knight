@@ -15,7 +15,7 @@ TITLE = "Py Knight"
 FPS = 30
 
 # Optional grid for help with level design
-show_grid = False
+show_grid = True
 grid_color = (150, 150, 150)
 
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
@@ -129,9 +129,12 @@ tile_images = { "Grass_surface": load_image('assets/images/tiles/grass_block_sur
                 "Plant": load_image('assets/images/tiles/platformPack_tile045.png'),
                 "FlagTop": load_image('assets/images/tiles/medievalTile_166.png'),
                 "FlagPole": load_image('assets/images/tiles/medievalTile_190.png') }
-        
-basic_enemy_images = [ load_image('assets/images/characters/platformPack_tile024a.png'),
-                       load_image('assets/images/characters/platformPack_tile024b.png') ]
+
+basicenemy = [ load_image('assets/images/characters/rotted_maggot1.png'),
+                       load_image('assets/images/characters/rotted_maggot2.png') ]
+
+basic_enemy_images = { "walk_rt": basicenemy,
+                       "walk_lt": [flip_image(img) for img in basicenemy]}
 
 platform_enemy_images = [ load_image('assets/images/characters/squire_1.png'),
                           load_image('assets/images/characters/squire_2.png')]
