@@ -15,8 +15,8 @@
 
 	"background": {
 		"color": [0, 0, 0],
-		"image1": "assets/images/backgrounds/Sky.png",
-		"image2": "assets/images/backgrounds/Hills_2.png",
+		"image1": "assets/images/backgrounds/cave_background.png",
+		"image2": "assets/images/backgrounds/cave_foreground.png",
 		"parallax_speed1": 0.6,
 		"parallax_speed2": 0.3
 	},
@@ -30,7 +30,13 @@
 		],
 
 		"main": [
-			
+			[0, 8, "Cave_surface"],
+			[1, 8, "Cave_surface"],
+			[2, 8, "Cave_surface"],
+			[3, 8, "Cave_surface"],
+			[4, 8, "Cave_surface"],
+			[5, 8, "Cave_surface"],
+			[6, 8, "Cave_surface"]
 
 		],
 
