@@ -36,7 +36,34 @@
 			[3, 8, "Cave_surface"],
 			[4, 8, "Cave_surface"],
 			[5, 8, "Cave_surface"],
-			[6, 8, "Cave_surface"]
+			[6, 8, "Cave_surface"],
+
+			[0, 2, "Cave_ceiling"],
+			[1, 2, "Cave_ceiling"],
+			[2, 2, "Cave_ceiling"],
+			[3, 2, "Cave_ceiling"],
+			[4, 2, "Cave_ceiling"],
+			[5, 2, "Cave_ceiling"],
+			[6, 2, "Cave_ceiling"],
+
+			[0, 1, "Cave_filler"],
+			[1, 1, "Cave_filler"],
+			[2, 1, "Cave_filler"],
+			[3, 1, "Cave_filler"],
+			[4, 1, "Cave_filler"],
+			[5, 1, "Cave_filler"],
+			[6, 1, "Cave_filler"],
+			[0, 0, "Cave_filler"],
+			[1, 0, "Cave_filler"],
+			[2, 0, "Cave_filler"],
+			[3, 0, "Cave_filler"],
+			[4, 0, "Cave_filler"],
+			[5, 0, "Cave_filler"],
+			[6, 0, "Cave_filler"],
+			[7, 2, "Cave_ceilingcorner_rht"],
+			[7, 1, "Cave_wall_rht"],
+			[7, 0, "Cave_wall_rht"]
+			
 
 		],
 
