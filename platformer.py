@@ -844,6 +844,7 @@ class Game():
 
             if self.hero.reached_goal:
                 stop_music()
+                win_theme.play()
                 self.stage = Game.CLEARED
                 self.cleared_timer = self.level_change_delay
             elif self.hero.hearts == 0:
