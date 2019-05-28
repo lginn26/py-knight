@@ -111,7 +111,6 @@ tile_images = { "Grass_surface": load_image('assets/images/tiles/grass_block_sur
                 "Wooden_Platform_mid": load_image('assets/images/tiles/wooden_platform_mid.png'),
                 "Wooden_Platform_rht": load_image('assets/images/tiles/wooden_platform_rht.png'),
                 "Wooden_Spikes": load_image('assets/images/tiles/root_spikes.png'),
-
                 "Cave_surface": load_image('assets/images/tiles/cave_block_surfac.png'),
                 "Cave_filler": load_image('assets/images/tiles/cave_block_filler.png'),
                 "Cave_wall_lft": load_image('assets/images/tiles/cave_block_leftwall.png'),
@@ -143,8 +142,8 @@ item_images = { "Gem": load_image('assets/images/items/platformPack_item008.png'
 
 # Levels
 levels = ["assets/levels/level_1.json",
-          "assets/levels/level_1.json",
-          "assets/levels/level_1.json"]
+          "assets/levels/level_2.json",
+          "assets/levels/level_2.json"]
     
 # Sprite classes
 class Tile(pygame.sprite.Sprite):
@@ -805,6 +804,9 @@ class Game():
                 if self.stage == Game.START:
                     if event.key == pygame.K_SPACE:
                         self.start_level()
+
+                elif event.key == pygame.K_p and self.stage == Game.PLAYING:
+                    self.stage = Game.PAUSE
                         
                 elif self.stage == Game.PLAYING:
                     if event.key == pygame.K_SPACE:
@@ -813,10 +815,7 @@ class Game():
                 elif self.stage == Game.WIN or self.stage == Game.LOSE:
                     if event.key == pygame.K_SPACE:
                         self.setup()
-                
-                    elif event.key == pygame.K_p and self.stage == Game.PLAYING:
-                        self.stage = Game.PAUSE
-                          
+                                          
                 elif self.stage == Game.PAUSE:
                     if event.key == pygame.K_p:
                         self.stage = Game.PLAYING
