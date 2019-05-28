@@ -12,7 +12,7 @@ pygame.init()
 SCREEN_WIDTH = 1024
 SCREEN_HEIGHT = 576
 TITLE = "Py Knight"
-FPS = 80
+FPS = 30
 
 # Optional grid for help with level design
 show_grid = False
@@ -119,6 +119,7 @@ tile_images = { "Grass_surface": load_image('assets/images/tiles/grass_block_sur
                 "Cave_corner_rht": load_image('assets/images/tiles/cave_block_rightcorner.png'),
                 "Cave_merger_lft": load_image('assets/images/tiles/cave_block_leftmerger.png'),
                 "Cave_merger_rht": load_image('assets/images/tiles/cave_block_rightmerger.png'),
+                "Cave_ceiling": load_image('assets/images/tiles/cave_block_ceiling.png'),
                 "Cave_ceilingcorner_lft": load_image('assets/images/tiles/cave_block_lefttopcorner.png'),
                 "Cave_ceilingcorner_rht": load_image('assets/images/tiles/cave_block_righttopcorner.png'),
                 "Cave_celingmerger_lft": load_image('assets/images/tiles/cave_block_leftmerger.png'),
@@ -139,6 +140,10 @@ platformenemy = {"walk_rt": platform_enemy_images,
                  "walk_lt": [flip_image(img) for img in platform_enemy_images]}
 
 item_images = { "Gem": load_image('assets/images/items/platformPack_item008.png') }
+
+# State Musics
+title_theme = load_sound("assets/sounds/title_theme.ogg")
+win_theme = load_sound("assets/sounds/victory.ogg")
 
 # Levels
 levels = ["assets/levels/level_1.json",
@@ -708,6 +713,7 @@ class Game():
         self.active_sprites.add(self.hero, self.level.items, self.level.enemies)
 
     def start_level(self):
+        pygame.mixer.stop()
         play_music()
         self.stage = Game.PLAYING
             
@@ -874,6 +880,8 @@ class Game():
         self.show_stats()
         
         if self.stage == Game.START:
+            if not pygame.mixer.get_busy():
+                title_theme.play()
             self.show_title_screen()        
         elif self.stage == Game.CLEARED:
             self.show_cleared_screen()

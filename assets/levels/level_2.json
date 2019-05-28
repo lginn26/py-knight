@@ -11,7 +11,7 @@
 		"terminal_velocity": 36
 	},
 
-	"music": "assets/sounds/theme.ogg",
+	"music": "assets/sounds/cave_theme.ogg",
 
 	"background": {
 		"color": [0, 0, 0],
