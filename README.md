@@ -26,8 +26,15 @@ You are a humble knight faced with the task of saving the village from the Py Dr
 - Platforms: Can be jumped on from benieth and from the sides
 - Spikes: Instant Kill 
 
+# Levels
+* The Plains of Light
+
+* The Caves of Blight
+
 # Enemies
 * ![Squire](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/characters/squire_1.png) Squire
 * These under-trained rookies walk posted to their position. 
 * ![Rotted Maggot](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/characters/rotted_maggot1.png) Rotted Maggot
 * Decades spent in the Caves of Blight have corrupted these oversized insects. These creatures are blind, and thus can only change direction when they collide with another object.
+
+
