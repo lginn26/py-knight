@@ -62,9 +62,10 @@
 			[6, 0, "Cave_filler"],
 			[7, 2, "Cave_ceilingcorner_rht"],
 			[7, 1, "Cave_wall_rht"],
-			[7, 0, "Cave_wall_rht"]
-			
-
+			[7, 0, "Cave_wall_rht"],
+			[7, 8, "Cave_surface"],
+			[8, 8, "Cave_merger_lft"],
+			[8, 7, "Cave_wall_lft"]
 		],
 
 		"foreground": [
