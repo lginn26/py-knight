@@ -1,1 +1,4 @@
 theme: jekyll-theme-midnight
+title: Py Knight
+description: This is a small medieval themed platformer.
+show_downloads: True
