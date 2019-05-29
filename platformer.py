@@ -60,6 +60,8 @@ swing_snd = load_sound('assets/sounds/player_swing.ogg')
 enemy_hit_snd = load_sound('assets/sounds/enemy_hit.ogg')
 
 # Images
+shield_img = load_image('assets/images/tiles/py_shield.png')
+
 idle = load_image('assets/images/characters/py_knight_rht.png')
 
 walk = [load_image('assets/images/characters/py_knight_rht_w2.png'),
@@ -242,6 +244,7 @@ class Hero(pygame.sprite.Sprite):
 
             for hit in hit_list:
                 hit.kill()
+                self.score += 20
                 enemy_hit_snd.play()
                 
     def apply_gravity(self, level):
@@ -770,12 +773,12 @@ class Game():
         screen.blit(text, rect)
 
     def show_stats(self):
-        level_str = "L: " + str(self.current_level)
+        level_str = "Level: " + str(self.current_level)
         
         text = font_md.render(level_str, 1, BLACK)
         rect = text.get_rect()
-        rect.left = 24
-        rect.top = 24
+        rect.left = SCREEN_WIDTH - 145
+        rect.top = 64
         screen.blit(text, rect)
     
         score_str = "S: " + str(self.hero.score)
@@ -786,13 +789,16 @@ class Game():
         rect.top = 24
         screen.blit(text, rect)
         
-        score_str = "H: " + str(self.hero.hearts)
+        '''score_str = "H: " + str(self.hero.hearts)
         
         text = font_md.render(score_str, 1, BLACK)
         rect = text.get_rect()
         rect.left = 24
         rect.top = 64
-        screen.blit(text, rect)          
+        screen.blit(text, rect)'''
+
+        for s, loc in zip(range(self.hero.hearts), [0, 70, 140, 210, 280, 350]):
+            screen.blit(shield_img, [loc, 5])
                    
     def calculate_offset(self):
         x = -1 * self.hero.rect.centerx + SCREEN_WIDTH / 2
