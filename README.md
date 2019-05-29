@@ -1,5 +1,5 @@
 ## Disclaimer
-The game is not finished. Some features/levels may seem incomplete. The content featured in this website will only dicuss completed features.
+The game is not finished. Some features/levels may seem incomplete. The content featured in this website will only dicuss completed features. Some content may be outdated. Check when the site was last updated.
 
 ## Description
 You are a humble knight faced with the task of saving the village from the Py Dragon and his minions. On your quest, you will have to traverse challanging tarrain, make your way through the numrous biomes, and hack and slash your way through the Armies of the Py Dragon. Thankfully though, you are trained well in the art of combat and are prepared for anything. Don't forget to collect your Coins! You will need a reward for your hard work.
@@ -28,8 +28,9 @@ You are a humble knight faced with the task of saving the village from the Py Dr
 
 # Levels
 * The Plains of Light
-
-* The Caves of Blight
+![Screenshot](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/website_content/pyknight-screenshot(1).JPG)
+* The Caves of Blight (Incomplete)
+![Screenshot](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/website_content/pyknight-screenshot(2).JPG)
 
 # Enemies
 * ![Squire](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/characters/squire_1.png) Squire
@@ -37,4 +38,4 @@ You are a humble knight faced with the task of saving the village from the Py Dr
 * ![Rotted Maggot](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/characters/rotted_maggot1.png) Rotted Maggot
 * Decades spent in the Caves of Blight have corrupted these oversized insects. These creatures are blind, and thus can only change direction when they collide with another object.
 
-
+### Last Updated 5/29/2019
