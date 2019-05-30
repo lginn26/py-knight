@@ -4,6 +4,12 @@ import json
 import os
 import sys
 
+if getattr(sys, 'frozen', False):
+    application_path = sys._MEIPASS + '/'
+else:
+    application_path = os.path.dirname(__file__) + '/'
+
+
 # Initialize game engine
 pygame.mixer.pre_init()
 pygame.init()
@@ -15,7 +21,7 @@ TITLE = "Py Knight"
 FPS = 30
 
 # Optional grid for help with level design
-show_grid = True
+show_grid = False
 grid_color = (150, 150, 150)
 
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
@@ -23,16 +29,16 @@ pygame.display.set_caption(TITLE)
 
 # Helper functions for loading assets
 def load_font(font_face, font_size):
-    return pygame.font.Font(font_face, font_size)
+    return pygame.font.Font(application_path + font_face, font_size)
 
 def load_image(path):
-    return pygame.image.load(path).convert_alpha()
+    return pygame.image.load(application_path + path).convert_alpha()
 
 def flip_image(img):
     return pygame.transform.flip(img, 1, 0)
 
 def load_sound(path):
-    return pygame.mixer.Sound(path)
+    return pygame.mixer.Sound(application_path + path)
 
 # Helper functions for playing music
 def play_music():
@@ -46,9 +52,9 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
 # Fonts
-font_xs = load_font(None, 16)
-font_sm = load_font(None, 32)
-font_md = load_font(None, 48)
+font_xs = load_font("assets/fonts/cheri.ttf", 16)
+font_sm = load_font("assets/fonts/cheri.ttf", 32)
+font_md = load_font("assets/fonts/cheri.ttf", 48)
 font_lg = load_font("assets/fonts/helmswald_post_demo.otf", 64)
 font_xl = load_font("assets/fonts/helmswald_post_demo.otf", 80)
 
@@ -157,8 +163,8 @@ title_theme = load_sound("assets/sounds/title_theme.ogg")
 win_theme = load_sound("assets/sounds/victory.ogg")
 
 # Levels
-levels = ["assets/levels/level_1.json",
-          "assets/levels/level_2.json"]
+levels = [application_path + "assets/levels/level_1.json",
+          application_path + "assets/levels/level_2.json"]
     
 # Sprite classes
 class Tile(pygame.sprite.Sprite):
@@ -558,7 +564,7 @@ class Level():
         self.start_y = self.map_data['layout']['start'][1] * self.scale
 
     def load_music(self):
-        pygame.mixer.music.load(self.map_data['music'])
+        pygame.mixer.music.load(application_path + "/" + self.map_data['music'])
         
     def load_physics(self):
         self.gravity = self.map_data['physics']['gravity']
@@ -569,15 +575,10 @@ class Level():
         path1 = self.map_data['background']['image1']
         path2 = self.map_data['background']['image2']
 
-        if os.path.isfile(path1):
-            self.bg_image1 = pygame.image.load(path1).convert_alpha()
-        else:
-            self.bg_image1 = None
-
-        if os.path.isfile(path2):
-            self.bg_image2 = pygame.image.load(path2).convert_alpha()
-        else:
-            self.bg_image2 = None
+       
+        self.bg_image1 = pygame.image.load(application_path + "/" + path1).convert_alpha()        
+        self.bg_image2 = pygame.image.load(application_path + "/" + path2).convert_alpha()
+        
 
         self.parallax_speed1 = self.map_data['background']['parallax_speed1']
         self.parallax_speed2 = self.map_data['background']['parallax_speed2']
@@ -797,7 +798,7 @@ class Game():
         
         text = font_md.render(level_str, 1, BLACK)
         rect = text.get_rect()
-        rect.left = SCREEN_WIDTH - 145
+        rect.left = SCREEN_WIDTH - 165
         rect.top = 64
         screen.blit(text, rect)
     
