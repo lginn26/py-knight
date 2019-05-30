@@ -52,4 +52,5 @@ Lucky is the man who gets a hold of one these relics. These were originally crea
 * ![Rotted Maggot](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/characters/rotted_maggot1.png) **Rotted Maggot**
 * Decades spent in the Caves of Blight have corrupted these oversized insects. These creatures are blind, and thus can only change direction when they collide with another object.
 
+[DOWNLOAD NOW](https://github.com/lginn26/py-knight/releases/download/1.0/PyKnight.exe)
 ### Last Updated 5/30/2019
