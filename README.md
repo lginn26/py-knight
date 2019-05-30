@@ -6,10 +6,10 @@ You are a humble knight faced with the task of saving the village from the Py Dr
 
 ## Controls
 * **ARROW KEYS** To walk
-* SPACE to jump
-* press P while in game to pause
-* press Z to swing your sword
-* press the X button in the top right to quit
+* **SPACE** to jump
+* press **P** while in game to pause
+* press **Z** to swing your sword
+* press the **X** button in the top right to quit
 
 ## Gameplay
 * Reach the flag pole at the end of each level
@@ -18,35 +18,35 @@ You are a humble knight faced with the task of saving the village from the Py Dr
 * Don't let your health reach 0
 
 # Mechanics
-* You will begin at 3 hearts
+* You will begin at **3** hearts
 * While swining, enemies that touch you will be killed
 * You cannot move while swining
 * Certian tiles have certian collision behavoirs such..
-  - Solid Tiles: Basic tiles
-  - Platforms: Can be jumped on from benieth and from the sides
-  - Spikes: Instant Kill 
+  - **Solid Tiles**: Basic tiles
+  - **Platforms**: Can be jumped on from benieth and from the sides
+  - **Spikes**: Instant Kill 
 
 # Levels
-* The Plains of Light
+### The Plains of Light
 ![Screenshot](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/website_content/pyknight-screenshot(1).JPG)
-* The Caves of Blight 
+### The Caves of Blight 
 ![Screenshot](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/website_content/pyknight-screenshot(2).JPG)
 
 # Collectable Relics
-* ![B Coin](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/items/bronze_coin.png) Bronze Coin
+* ![B Coin](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/items/bronze_coin.png) **Bronze Coin**
 
 The most common coin minted in honor of the old python
-* ![S Coin](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/items/silver_coin.png) Silver Coin
+* ![S Coin](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/items/silver_coin.png) **Silver Coin**
 
 This uncommon trinket is more valuable than it seems. The they say the ingravings of this coin represents a god upon which the entire world runs on.
-* ![G Coin](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/items/gold_coin.png) Gold Coin
+* ![G Coin](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/items/gold_coin.png) **Gold Coin**
 
-Lucky is the man who gets a hold of one these relics. These were originally created by a group of cultists in honor of their gold and were ment to be used in their various rituals. The cult has long since disappeared but their relics still lay scattered in places unkown
+Lucky is the man who gets a hold of one these relics. These were originally created by a group of cultists in honor of their god and were ment to be used in their various rituals. The cult has long since disappeared but their relics still lay scattered in places unkown
 
 # Enemies
-* ![Squire](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/characters/squire_1.png) Squire
+* ![Squire](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/characters/squire_1.png) **Squire**
 * These under-trained rookies walk posted to their position. 
-* ![Rotted Maggot](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/characters/rotted_maggot1.png) Rotted Maggot
+* ![Rotted Maggot](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/characters/rotted_maggot1.png) **Rotted Maggot**
 * Decades spent in the Caves of Blight have corrupted these oversized insects. These creatures are blind, and thus can only change direction when they collide with another object.
 
 ### Last Updated 5/30/2019
