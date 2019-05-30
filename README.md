@@ -34,10 +34,13 @@ You are a humble knight faced with the task of saving the village from the Py Dr
 
 # Collectable Relics
 * ![B Coin](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/items/bronze_coin.png) Bronze Coin
+
 The most common coin minted in honor of the old python
 * ![S Coin](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/items/silver_coin.png) Silver Coin
+
 This uncommon trinket is more valuable than it seems. The they say the ingravings of this coin represents a god upon which the entire world runs on.
 * ![G Coin](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/items/gold_coin.png) Gold Coin
+
 Lucky is the man who gets a hold of one these relics. These were originally created by a group of cultists in honor of their gold and were ment to be used in their various rituals. The cult has long since disappeared but their relics still lay scattered in places unkown
 
 # Enemies
