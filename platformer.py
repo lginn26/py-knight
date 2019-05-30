@@ -126,6 +126,10 @@ tile_images = { "Grass_surface": load_image('assets/images/tiles/grass_block_sur
                 "Cave_ceilingcorner_rht": load_image('assets/images/tiles/cave_block_righttopcorner.png'),
                 "Cave_celingmerger_lft": load_image('assets/images/tiles/cave_block_leftmerger.png'),
                 "Cave_celingmerger_rht": load_image('assets/images/tiles/cave_block_rightcelingmerger.png'),
+                "Stone_platform_lft": load_image('assets/images/tiles/cave_platform_lft.png'),
+                "Stone_platform_mid": load_image('assets/images/tiles/cave_platform_mid.png'),
+                "Stone_platform_rht": load_image('assets/images/tiles/cave_platform_rht.png'),
+                "Stone_Spikes": load_image('assets/images/tiles/cave_spikes.png'),
                 
                 
                 "Plant": load_image('assets/images/tiles/platformPack_tile045.png'),
