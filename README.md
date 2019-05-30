@@ -19,17 +19,17 @@ You are a humble knight faced with the task of saving the village from the Py Dr
 
 # Mechanics
 * You will begin at 3 hearts
-* While swining, enemy that touches you will be killed
+* While swining, enemies that touch you will be killed
 * You cannot move while swining
-* Certian tiles have certian collision behavoirs such a
-- Solid Tiles: Basic tiles
-- Platforms: Can be jumped on from benieth and from the sides
-- Spikes: Instant Kill 
+* Certian tiles have certian collision behavoirs such..
+  - Solid Tiles: Basic tiles
+  - Platforms: Can be jumped on from benieth and from the sides
+  - Spikes: Instant Kill 
 
 # Levels
 * The Plains of Light
 ![Screenshot](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/website_content/pyknight-screenshot(1).JPG)
-* The Caves of Blight (Incomplete)
+* The Caves of Blight 
 ![Screenshot](https://raw.githubusercontent.com/lginn26/py-knight/master/assets/images/website_content/pyknight-screenshot(2).JPG)
 
 # Collectable Relics
