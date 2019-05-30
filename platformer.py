@@ -148,7 +148,9 @@ platform_enemy_images = [ load_image('assets/images/characters/squire_1.png'),
 platformenemy = {"walk_rt": platform_enemy_images,
                  "walk_lt": [flip_image(img) for img in platform_enemy_images]}
 
-item_images = { "Gem": load_image('assets/images/items/platformPack_item008.png') }
+item_images = { "b_coin": load_image('assets/images/items/bronze_coin.png'),
+                "s_coin": load_image('assets/images/items/silver_coin.png'),
+                "g_coin": load_image('assets/images/items/gold_coin.png')}
 
 # State Musics
 title_theme = load_sound("assets/sounds/title_theme.ogg")
@@ -156,7 +158,6 @@ win_theme = load_sound("assets/sounds/victory.ogg")
 
 # Levels
 levels = ["assets/levels/level_1.json",
-          "assets/levels/level_2.json",
           "assets/levels/level_2.json"]
     
 # Sprite classes
@@ -494,16 +495,27 @@ class PlatformEnemy(BasicEnemy):
             self.should_reverse = True
             
 class Gem(pygame.sprite.Sprite):
-    def __init__(self, x, y, image):
+    def __init__(self, x, y, ty):
         super().__init__()
 
-        self.image = image
+        if ty == "b":
+            self.image = item_images["b_coin"]
+        elif ty == "s":
+            self.image = item_images["s_coin"]
+        elif ty == "g":
+            self.image = item_images["g_coin"]
+            
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
 
-        self.value = 10
-
+        if ty == "b":
+            self.value = 10
+        elif ty == "s":
+            self.value = 25
+        elif ty == "g":
+            self.value = 50
+            
     def apply(self, hero):
         gem_snd.play()
         hero.score += self.value
@@ -605,8 +617,12 @@ class Level():
             y = element[1] * self.scale
             kind = element[2]
             
-            if kind == "Gem":
-                s = Gem(x, y, item_images[kind])
+            if kind == "B_Coin":
+                s = Gem(x, y, "b")
+            elif kind == "S_Coin":
+                s = Gem(x, y, "s")
+            elif kind == "G_Coin":
+                s = Gem(x, y, "g")
                 
             self.items.add(s)
 
