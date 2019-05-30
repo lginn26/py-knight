@@ -2,7 +2,7 @@
 The game is not finished. Some features/levels may seem incomplete. The content featured in this website will only dicuss completed features. Some content may be outdated. Check when the site was last updated.
 
 ## Description
-You are a humble knight faced with the task of saving the village from the Py Dragon and his minions. On your quest, you will have to traverse challanging tarrain, make your way through the numrous biomes, and hack and slash your way through the Armies of the Py Dragon. Thankfully though, you are trained well in the art of combat and are prepared for anything. Don't forget to collect your Coins! You will need a reward for your hard work.
+A group of cultists under the athority of the Py Dragon have sent minions to take over the humble kindom of Pythonia. You are a humble knight faced with the task of saving the village from the Py Dragon and his minions. On your quest, you will have to traverse challanging tarrain, make your way through the numrous biomes, and hack and slash your way through the Armies of the Py Dragon. Thankfully though, you are trained well in the art of combat and are prepared for anything. Don't forget to collect your Coins! You will need a reward for your hard work.
 
 ## Controls
 * **ARROW KEYS** To walk
